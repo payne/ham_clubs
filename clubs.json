@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Heartland Hams Amateur Radio Club",
+    "tags": [
+      "Southwest Iowa",
+      "Field Day",
+      "Community Service"
+    ],
+    "description": "Based in the heartland of Southwest Iowa and serving the Mills County area, the Heartland Hams are a dedicated group of operators who've been active since their incorporation in 1995. They meet monthly on the second Thursday at the Mills County Historical Museum at 7:00 PM.\n\nThe club is particularly active in Field Day operations and maintains regular weekly nets including a 2-meter sideband net on Sunday evenings. Members support local emergency communications and provide a welcoming environment for both new and experienced operators. Their repeater system serves the Council Bluffs, Omaha, and surrounding areas.",
+    "url": "http://heartlandhams.org/"
+  },
+  {
+    "name": "Heartland DX Association",
+    "tags": [
+      "DXing",
+      "Contesting",
+      "HF Operations"
+    ],
+    "description": "For those passionate about chasing DX and working contests, the Heartland DX Association (HDXA) is the place to be! This ARRL-affiliated club serves eastern Nebraska and western Iowa, bringing together operators who share a love of making long-distance contacts.\n\nHDXA offers both regular membership (for operators with 100+ confirmed DXCC countries) and associate membership (for those working toward that goal or interested in learning about DXing). The club collaborates with Pioneer ARC for Field Day operations and maintains an active presence in the contest community. Connect with them on Facebook to stay updated on DXpeditions, contest weekends, and propagation conditions.",
+    "url": "https://www.facebook.com/HeartlandDX"
+  },
+  {
+    "name": "Pioneer Amateur Radio Club",
+    "tags": [
+      "Fremont, NE",
+      "Emergency Services",
+      "Public Service",
+      "Annual Hamfest"
+    ],
+    "description": "Established in 1940, the Pioneer Amateur Radio Club (PARC) has been a cornerstone of the amateur radio community in the Fremont and Dodge County area for over 80 years. The club meets monthly for dinner at 6:00 PM with meetings starting at 7:00 PM on the fourth Thursday of each month.\n\nPARC plays a critical role in supporting Dodge County Emergency Management and has received recognition for their outstanding disaster response work, particularly during the devastating 2019 floods. The club hosts an annual hamfest and flea market each summer, complete with VE testing, food, and prizes. With affordable annual dues of just $10 ($13 for families), PARC welcomes operators of all experience levels and publishes what they proudly claim is \"the BEST newsletter in the area.\"",
+    "url": "http://www.k0jfn.com/"
+  },
+  {
+    "name": "Southwest Iowa Amateur Radio Club (SWIARC)",
+    "tags": [
+      "Council Bluffs, IA",
+      "Digital Modes",
+      "Repeater Operations",
+      "ARES"
+    ],
+    "description": "SWIARC has a rich history dating back decades in the Council Bluffs area. What was once called \"The Radio Communication and Electronic Training Club of Southwest Iowa\" has evolved into a vibrant, modern club serving both Iowa and Nebraska hams. They meet on the fourth Thursday of each month at the Charles E. Lakin Foundation in Council Bluffs.\n\nThe club operates multiple repeaters including a C4FM digital repeater with Wires-X connectivity, making it easy to connect with operators worldwide. SWIARC hosts an annual hamfest each March featuring vendors, VE testing, and door prizes. They're actively reforming their Pottawattamie County ARES group and run regular Wednesday evening ARES nets. Annual dues are $20 ($10 for students), and the club welcomes both licensed operators and those interested in getting licensed.",
+    "url": "http://swiradio.org/"
+  },
+  {
+    "name": "Lincoln Amateur Radio Club",
+    "tags": [
+      "Lincoln, NE",
+      "Since 1953",
+      "License Testing",
+      "Educational Programs"
+    ],
+    "description": "Serving Southeast Nebraska since 1953, the Lincoln Amateur Radio Club (LARC) is one of the region's most established and active clubs. They meet on the second Wednesday of each month at 7:30 PM at their dedicated clubhouse located at 4420 NW 41st Street in Lincoln.\n\nLARC operates the K0KKV repeater on 146.760 MHz, which serves as the primary ARES and SKYWARN repeater for the Lincoln area. The club is heavily involved in public service activities including the Lincoln Marathon, Crop Walk, and Cornhusker State Games. They offer regular license testing on the first Thursday of each month, Technician class instruction, and monthly technical presentations. LARC publishes the \"Lincoln LOG\" newsletter and maintains nightly ARES nets. Their clubhouse provides a great space for elmers and new hams to connect.",
+    "url": "http://k0kkv.org/"
+  },
+  {
+    "name": "Douglas County ARES",
+    "tags": [
+      "Emergency Communications",
+      "SKYWARN",
+      "Public Service"
+    ],
+    "description": "Douglas County Amateur Radio Emergency Service (DC ARES) is the backbone of emergency communications for the Omaha metro area. Working closely with Douglas County Emergency Management Agency, the Omaha Metro Medical Response System (OMMRS), and the National Weather Service, DC ARES volunteers provide critical communications during disasters and severe weather.\n\nDC ARES members are trained SKYWARN spotters and regularly staff the National Weather Service office in Valley, Nebraska during severe weather events. They hold weekly training and information nets on Sunday nights at 9:00 PM on the K0USA 146.940 repeater. After the devastating 1975 tornado, the City of Omaha recognized the critical role amateur radio played by awarding a $10,000 grant to establish dedicated emergency communications facilities. Today, DC ARES continues this proud tradition of public service, and they welcome new volunteers interested in emergency communications and storm spotting.",
+    "url": "https://dcaresne.wixsite.com/dcaresne"
+  }
+]

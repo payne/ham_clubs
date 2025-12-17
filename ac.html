@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amateur Radio Clubs - Sortable Table</title>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #006600;
+            text-align: center;
+            margin-top: 0;
+            font-size: 2.5rem;
+            border-bottom: 3px solid #006600;
+            padding-bottom: 1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        thead {
+            background: #006600;
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: background 0.2s;
+        }
+
+        th:hover {
+            background: #004400;
+        }
+
+        th.sortable::after {
+            content: ' ⇅';
+            opacity: 0.5;
+            font-size: 0.9em;
+        }
+
+        th.sort-asc::after {
+            content: ' ▲';
+            opacity: 1;
+        }
+
+        th.sort-desc::after {
+            content: ' ▼';
+            opacity: 1;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #dddddd;
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: #f5f5f5;
+        }
+
+        td {
+            padding: 1rem;
+            vertical-align: top;
+        }
+
+        .club-name {
+            font-weight: bold;
+            color: #006600;
+            font-size: 1.1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #efefef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #555555;
+            white-space: nowrap;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: #333333;
+            max-width: 600px;
+        }
+
+        .club-link {
+            display: inline-block;
+            background: #006600;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .club-link:hover {
+            background: #004400;
+        }
+
+        .stats {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Omaha Area Amateur Radio Clubs</h1>
+        <div id="content">
+            <div class="loading">Loading clubs data...</div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let clubsData = [];
+            let currentSort = {
+                column: null,
+                direction: 'asc'
+            };
+
+            // Fetch clubs data
+            $.ajax({
+                url: 'clubs.json',
+                dataType: 'json',
+                success: function(data) {
+                    clubsData = data;
+                    renderTable(clubsData);
+                },
+                error: function(xhr, status, error) {
+                    $('#content').html('<div class="error">Error loading clubs data: ' + error + '</div>');
+                }
+            });
+
+            function renderTable(data) {
+                let html = '<table id="clubsTable">';
+                html += '<thead>';
+                html += '<tr>';
+                html += '<th class="sortable" data-column="name">Club Name</th>';
+                html += '<th class="sortable" data-column="tags">Tags</th>';
+                html += '<th class="sortable" data-column="description">Description</th>';
+                html += '<th data-column="url">Website</th>';
+                html += '</tr>';
+                html += '</thead>';
+                html += '<tbody>';
+
+                data.forEach(function(club) {
+                    html += '<tr>';
+                    html += '<td class="club-name">' + escapeHtml(club.name) + '</td>';
+                    html += '<td><div class="tags">';
+                    club.tags.forEach(function(tag) {
+                        html += '<span class="tag">' + escapeHtml(tag) + '</span>';
+                    });
+                    html += '</div></td>';
+                    html += '<td class="description">' + escapeHtml(club.description).replace(/\n\n/g, '<br><br>') + '</td>';
+                    html += '<td><a href="' + escapeHtml(club.url) + '" class="club-link" target="_blank">Visit Website</a></td>';
+                    html += '</tr>';
+                });
+
+                html += '</tbody>';
+                html += '</table>';
+                html += '<div class="stats">Showing ' + data.length + ' clubs</div>';
+
+                $('#content').html(html);
+
+                // Attach click handlers to sortable headers
+                $('.sortable').on('click', function() {
+                    let column = $(this).data('column');
+                    sortTable(column);
+                });
+            }
+
+            function sortTable(column) {
+                // Determine sort direction
+                if (currentSort.column === column) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = column;
+                    currentSort.direction = 'asc';
+                }
+
+                // Sort the data
+                let sortedData = [...clubsData].sort(function(a, b) {
+                    let valA, valB;
+
+                    if (column === 'tags') {
+                        valA = a[column].join(', ').toLowerCase();
+                        valB = b[column].join(', ').toLowerCase();
+                    } else {
+                        valA = a[column].toLowerCase();
+                        valB = b[column].toLowerCase();
+                    }
+
+                    if (valA < valB) return currentSort.direction === 'asc' ? -1 : 1;
+                    if (valA > valB) return currentSort.direction === 'asc' ? 1 : -1;
+                    return 0;
+                });
+
+                // Update header classes
+                $('th').removeClass('sort-asc sort-desc');
+                $('th[data-column="' + column + '"]').addClass('sort-' + currentSort.direction);
+
+                // Re-render table
+                renderTable(sortedData);
+            }
+
+            function escapeHtml(text) {
+                let map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+        });
+    </script>
+</body>
+</html>
